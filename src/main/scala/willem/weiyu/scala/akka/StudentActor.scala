@@ -1,4 +1,4 @@
-package willem.weiyu.akka
+package willem.weiyu.scala.akka
 
 import akka.actor.{Actor, ActorSystem, Props}
 import com.typesafe.config.ConfigFactory

@@ -1,8 +1,8 @@
-package willem.weiyu.akka
+package willem.weiyu.scala.akka
 
 import akka.actor.{Actor, ActorSystem, Props}
 
-class HelloActor extends Actor {
+class GreetActor extends Actor {
 
   override def receive: Receive = {
     case "hello" => println("您好!")
@@ -10,11 +10,11 @@ class HelloActor extends Actor {
   }
 }
 
-object Main {
+object HelloAkka {
 
   def main(args: Array[String]): Unit = {
-    val system = ActorSystem("HelloSystem")
-    val helloActor = system.actorOf(Props[HelloActor], name = "helloActor")
+    val system = ActorSystem("HelloActor")
+    val helloActor = system.actorOf(Props[GreetActor], name = "helloActor")
     helloActor ! "hello"
     helloActor ! "喂"
   }
