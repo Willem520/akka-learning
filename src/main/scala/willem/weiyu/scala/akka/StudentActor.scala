@@ -13,8 +13,8 @@ class StudentActor extends Actor{
 
   def receive = {
     case res: String => {
-      println (res)
       //打印出从老师 Actor 获得的答案
+      println(res+"，谢谢老师的解答")
     }
     case num: Int => {
       val ques = quesArr(num)
@@ -24,22 +24,24 @@ class StudentActor extends Actor{
   }
 }
 
-object StudentSimulator extends App{
+object StudentActor{
 
-  val config = ConfigFactory
-    .parseResources("system.conf")
-    .getConfig("RemoteClientSideActor")
-  //读入客户端配置
-  val actorSystem = ActorSystem("studentClient",  config);
-  //使用配置，建立 ActorSystem
-  val studentActor = actorSystem.actorOf(Props[StudentActor])
-  //获得 StudentActor 的一个引用。
-  //在程序中 Actor 不能直接被访问。
-  //所有操作都必须通过 ActorRef 引用。
-  val rand = new Random();
-  while(true){
-    val num = rand.nextInt(4)
-    studentActor ! num
-    Thread.sleep(5000)
+  def main(args: Array[String]): Unit = {
+    val config = ConfigFactory
+      .parseResources("system.conf")
+      .getConfig("RemoteClientSideActor")
+    //读入客户端配置
+    val actorSystem = ActorSystem("studentClient",  config);
+    //使用配置，建立 ActorSystem
+    val studentActor = actorSystem.actorOf(Props[StudentActor])
+    //获得 StudentActor 的一个引用。
+    //在程序中 Actor 不能直接被访问。
+    //所有操作都必须通过 ActorRef 引用。
+    val rand = new Random();
+    while(true){
+      val num = rand.nextInt(4)
+      studentActor ! num
+      Thread.sleep(2000)
+    }
   }
 }

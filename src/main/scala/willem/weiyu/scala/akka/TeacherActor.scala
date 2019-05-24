@@ -21,7 +21,7 @@ class TeacherActor extends Actor{
   }
 }
 
-object TeacherSimulator {
+object TeacherActor {
 
   def main(args: Array[String]): Unit = {
     //读入配置
