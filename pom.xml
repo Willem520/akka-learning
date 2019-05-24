@@ -10,7 +10,7 @@
 
     <properties>
         <scala.version>2.12.8</scala.version>
-        <akka.version>2.5.18</akka.version>
+        <akka.version>2.5.21</akka.version>
     </properties>
 
     <dependencies>
