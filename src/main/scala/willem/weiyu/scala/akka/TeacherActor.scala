@@ -1,9 +1,9 @@
 package willem.weiyu.scala.akka
 
-import akka.actor.{Actor, ActorSystem, Props}
+import akka.actor.{Actor, ActorLogging, ActorSystem, Props}
 import com.typesafe.config.ConfigFactory
 
-class TeacherActor extends Actor{
+class TeacherActor extends Actor with ActorLogging{
 
   override def receive: Receive = {
     case "1+1等于多少?" => {

@@ -1,11 +1,11 @@
 package willem.weiyu.scala.akka
 
-import akka.actor.{Actor, ActorSystem, Props}
+import akka.actor.{Actor, ActorLogging, ActorSystem, Props}
 import com.typesafe.config.ConfigFactory
 
 import scala.util.Random
 
-class StudentActor extends Actor{
+class StudentActor extends Actor with ActorLogging{
   val quesArr = Array("1+1等于多少?","中国历史上最后一位皇帝是谁?","腾讯第一网红是谁?","无解的问题")
   // 远程Actor的路径，通过该路径能够获取到远程Actor的一个引用
   val remoteServerRef = context.actorSelection("akka.tcp://teacherService@127.0.0.1:4999/user/teacherActor")
@@ -14,11 +14,11 @@ class StudentActor extends Actor{
   def receive = {
     case res: String => {
       //打印出从老师 Actor 获得的答案
-      println(res+"，谢谢老师的解答")
+      log.info("答：{}",res)
     }
     case num: Int => {
       val ques = quesArr(num)
-      println(s"******$ques")
+      log.info("问：{}", ques)
       remoteServerRef ! ques
     }
   }
