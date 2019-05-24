@@ -19,7 +19,8 @@ object HelloAkka2 {
     hello ! Greet("Alice")
     hello ! Greet("Bob")
     Thread sleep 1000
-    system terminate
+    hello ! "stop"
+    hello ! Greet("123")
   }
 }
 
@@ -32,6 +33,12 @@ class Hello2 extends Actor{
   override def receive: Receive = {
     case Greeting(greet) => greeting = greet
     case Greet(name) => println(s"$greeting $name")
+    case "stop" => {
+      //停止自己的actorRef
+      context.stop(self)
+      //关闭ActorSystem，即关闭其内部的线程池
+      //context.system.terminate()
+    }
   }
 }
 
