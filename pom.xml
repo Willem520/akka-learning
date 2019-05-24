@@ -9,7 +9,7 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <scala.version>2.11.12</scala.version>
+        <scala.version>2.12.8</scala.version>
         <akka.version>2.5.18</akka.version>
     </properties>
 
@@ -17,14 +17,14 @@
         <!-- https://mvnrepository.com/artifact/com.typesafe.akka/akka-actor -->
         <dependency>
             <groupId>com.typesafe.akka</groupId>
-            <artifactId>akka-actor_2.11</artifactId>
+            <artifactId>akka-actor_2.12</artifactId>
             <version>${akka.version}</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/com.typesafe.akka/akka-remote -->
         <dependency>
             <groupId>com.typesafe.akka</groupId>
-            <artifactId>akka-remote_2.11</artifactId>
+            <artifactId>akka-remote_2.12</artifactId>
             <version>${akka.version}</version>
         </dependency>
     </dependencies>
